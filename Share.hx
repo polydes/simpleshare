@@ -58,7 +58,8 @@ class Share
 		saveImage(img);
 	}
 	
-	public static function saveImage(bmd:BitmapData):Void {
+	public static function saveImage(bmd:BitmapData):Void 
+	{
 	#if ios
 		//var ba:ByteArray = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
 		//sharescreenshot(msg,url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
@@ -68,19 +69,22 @@ class Share
 		sharescreenshot(msg,url, sharedImagePath, Std.int(bmd.width), Std.int(bmd.height));
 		
 	#elseif android
-		if (jni_call_save_image == null) jni_call_save_image = JNI.createStaticMethod ("com.byrobin.simpleshare.Share", "saveImageAndShare", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-			jni_call_save_image(msg,url, getB64PngData(bmd));
+		if (jni_call_save_image == null) 
+		{
+			jni_call_save_image = JNI.createStaticMethod ("com.byrobin.simpleshare.Share", "saveImageAndShare", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+		}
+		jni_call_save_image(msg,url, getB64PngData(bmd));
 	#end
-}
+	}
 
-	#if (android && openfl)
+	#if android
 		
 	private static inline var BASE_64_ENCODINGS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	private static inline var BASE_64_PADDING = "=";
 		
-	static inline function getB64PngData(bmp:BitmapData):String
+	static inline function getB64PngData(bmd:BitmapData):String
 	{
-		var b:ByteArray = bmp.encode("png");
+		var b:ByteArray = bmd.encode(bmd.rect, new PNGEncoderOptions()); //bmd.encode("png");
 		var base64:String = new haxe.crypto.BaseCode(Bytes.ofString(BASE_64_ENCODINGS)).encodeBytes(b).toString();
 		var remainder = base64.length % 4;
 				

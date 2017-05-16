@@ -34,8 +34,18 @@ import android.util.Log;
 
 import org.haxe.extension.Extension;
 
+///permisions
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.Manifest;
+
 public class Share extends Extension
 {
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    private static final int REQUEST_ALL = 0;
+    private static String[] PERMISSIONS_ALL = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE};
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    
     
     public static String path;
     public static Uri uri;
@@ -70,6 +80,11 @@ public class Share extends Extension
     
     public static void saveImageAndShare (final String msg, final String url, final String base64Img)
     {
+        
+        if(!hasPermissions(PERMISSIONS_ALL)){
+            ActivityCompat.requestPermissions(mainActivity, PERMISSIONS_ALL, REQUEST_ALL);
+            return;
+        }
         mainActivity.runOnUiThread(new Runnable()
                                    {
             public void run()
@@ -132,6 +147,17 @@ public class Share extends Extension
     static public boolean shareResultFailed()
     {
         return shareFailed;
+    }
+    
+    public static boolean hasPermissions(String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= 23 && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
