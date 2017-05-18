@@ -109,8 +109,8 @@ namespace share
         }
     }
     
-    //void shareWithScreenShot(const char *msg, const char *url, unsigned char *outputData, int w, int h)
-    void shareWithScreenShot(const char *msg, const char *url, const char *outputData, int w, int h)
+    void shareWithScreenShot(const char *msg, const char *url, unsigned char *outputData, int w, int h)
+    //void shareWithScreenShot(const char *msg, const char *url, const char *outputData, int w, int h)
     {
         ViewController *acController = [[ViewController alloc] init];
         
@@ -119,17 +119,17 @@ namespace share
             acController = [[ViewController alloc] init];
         }
         //////////////////////////////////EDIT:screenshot////////////////////////////////////////
-            /*CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
+            CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
             CGContextRef bitmapContext=CGBitmapContextCreate(outputData, w, h, 8, 4*w, colorSpace,  kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrderDefault);
             CFRelease(colorSpace);
             CGImageRef cgImage=CGBitmapContextCreateImage(bitmapContext);
             CGContextRelease(bitmapContext);
         
             UIImage * screenshot = [UIImage imageWithCGImage:cgImage];
-            CGImageRelease(cgImage);*/
+            CGImageRelease(cgImage);
         
-            NSString *image = [[NSString alloc] initWithUTF8String:outputData];
-            UIImage* screenshot=[UIImage imageWithContentsOfFile:image];
+            //NSString *image = [[NSString alloc] initWithUTF8String:outputData];
+            //UIImage* screenshot=[UIImage imageWithContentsOfFile:image];
     
             ////////////////////
             

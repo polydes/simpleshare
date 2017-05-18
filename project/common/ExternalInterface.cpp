@@ -30,12 +30,12 @@ void ios_share(value msg, value url, value withImage)
 DEFINE_PRIM(ios_share, 3);
 
 static void share_screenshot (value msg, value url,value img, value w, value h) {
-    //buffer imgBuf = val_to_buffer(img);
+    buffer imgBuf = val_to_buffer(img);
     
-   // unsigned char *img_str = (unsigned char *)buffer_data(imgBuf);
+    unsigned char *img_str = (unsigned char *)buffer_data(imgBuf);
     
-    //shareWithScreenShot(val_string(msg),val_string(url),img_str, val_int(w), val_int(h));
-    shareWithScreenShot(val_string(msg),val_string(url),val_string(img), val_int(w), val_int(h));
+    shareWithScreenShot(val_string(msg),val_string(url),img_str, val_int(w), val_int(h));
+    //shareWithScreenShot(val_string(msg),val_string(url),val_string(img), val_int(w), val_int(h));
 }
 
 DEFINE_PRIM (share_screenshot, 5);

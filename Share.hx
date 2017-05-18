@@ -62,11 +62,10 @@ class Share
 	{
 	#if ios
 		//var ba:ByteArray = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
-		//sharescreenshot(msg,url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
+		//sharescreenshot(msg, url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
 		
-		var sharedImagePath:String = null;
-		sharedImagePath = saveBitmapData(bmd);
-		sharescreenshot(msg,url, sharedImagePath, Std.int(bmd.width), Std.int(bmd.height));
+		var ba:ByteArrayData = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
+		sharescreenshot(msg, url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
 		
 	#elseif android
 		if (jni_call_save_image == null) 
@@ -153,31 +152,4 @@ class Share
 	private static var sharefailed = cpp.Lib.load("share","get_share_failed",0);
 	#end
 	
-	#if (android || ios)
-	public static function saveBitmapData(bdm:BitmapData, fName="shareimage.png"):String {
-		var imagePath:String = "";
-		#if (!openfl_legacy)
-			imagePath = lime.system.System.documentsDirectory + "/" + fName;
-		#else
-			imagePath = openfl.utils.SystemPath.documentsDirectory + "/" + fName;
-		#end
-		if (sys.FileSystem.exists(imagePath)) {
-			try {
-				sys.FileSystem.deleteFile(imagePath);
-			} catch(e:Dynamic) {
-				trace("deleting image failed");
-				return null;
-			}
-		}
-		var bytes:ByteArray = bdm.encode(bdm.rect, new PNGEncoderOptions());
-		try {
-			sys.io.File.saveBytes(imagePath, bytes);
-		} catch(e:Dynamic) {
-			trace("saving image failed");
-			return null;
-		}
-		return imagePath;
-	}
-	#end
-
 }

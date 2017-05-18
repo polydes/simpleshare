@@ -1,7 +1,7 @@
-name=Simple Share IOS/ANDROID 1.9.3 (byRobin)
+name=Simple Share IOS/ANDROID 1.9.4 (byRobin)
 description=Simple share content (Email/Facebook/Twitter and more…).
 author=Robin Schaafsma
 website=http://www.byrobingames.com
-version=1.9.3
+version=1.9.4
 compatibility=mobile
 dependencies=toolset-com.byrobingames.manager-0.0.1
