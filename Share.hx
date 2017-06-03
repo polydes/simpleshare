@@ -61,12 +61,13 @@ class Share
 	public static function saveImage(bmd:BitmapData):Void 
 	{
 	#if ios
-		//var ba:ByteArray = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
-		//sharescreenshot(msg, url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
-		
+		#if openfl_legacy
+		var ba:ByteArray = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
+		sharescreenshot(msg, url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
+		#else
 		var ba:ByteArrayData = bmd.getPixels(new Rectangle(0, 0, bmd.width, bmd.height));
 		sharescreenshot(msg, url, ba.getData(), Std.int(bmd.width), Std.int(bmd.height));
-		
+		#end
 	#elseif android
 		if (jni_call_save_image == null) 
 		{

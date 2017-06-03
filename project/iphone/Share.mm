@@ -55,7 +55,8 @@ namespace share
             
             avc.excludedActivityTypes = excludeActivities;
             
-            id VC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+            //id VC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+            UIViewController *VC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
             
             if(NSClassFromString(@"UIPopoverPresentationController"))// Show ActivityViewController in popover on IOS8 for iPad
             {
@@ -145,7 +146,8 @@ namespace share
             
             avc.excludedActivityTypes = excludeActivities;
             
-            id VC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+            //id VC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+            UIViewController *VC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
             
             if(NSClassFromString(@"UIPopoverPresentationController"))// Show ActivityViewController in popover on IOS8 for iPad
             {
