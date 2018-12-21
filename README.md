@@ -6,7 +6,7 @@ Stencyl extension for “Simple Share” on iOS and Android. This extension allo
 
 You can share a message with a website and with an image, via all existing apps on a mobile device. This extension use the IMAGE API to share an image.
 
-<span font="color:red;">The website or screenshot will share with Facebook and not the message. All other apps works fine..</span><br/>
+<span style="color:red;">The website or screenshot will share with Facebook and not the message. All other apps works fine..</span><br/>
 It seems that a recent update to the Facebook application has replaced the in-built Facebook share activity with one that ignores status text .
 
 Facebook's policies don't allow you to pre-populate status messages and require all content to be user generated - while I understand the intention behind this, I personally think it is kind of stupid in many cases - For example in my game I want to pre-populate the user's score, but now I can't, so the user is presented with an empty dialog box. I will probably simply remove the Facebook sharing option as no-one will ever use it now.<br/>
@@ -66,7 +66,7 @@ You als can share an personal image of your choose, just use the “Image from f
 ![imageApi](https://byrobingames.github.io/img/simpleshare/imageApi.png)
 
 If Share Message succeed or failed you can check if share succeed or failed.<br/>
-<span font="color:red;">On Android it will always return true even when share is failed.</span><br/>
+<span style="color:red;">On Android it will always return true even when share is failed.</span><br/>
 ![simplesharecallback](https://byrobingames.github.io/img/simpleshare/simplesharecallback.png)
 
 ## Version History
