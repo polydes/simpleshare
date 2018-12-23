@@ -25,6 +25,7 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 - Return true or false (android always return true)
 - 64-bit support to iOS
 - Tested with iPhone 5 IOS 8, Ipad IOS 8 and Samgsung Note 3 4.4.2
+
 ## How to Install
 
 To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
@@ -43,6 +44,8 @@ Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
 Just put the block under a share button, fill in a message with a website url and set yes or no if you wanna share a screenshot. Website has to start with http://
 Select yes or no if you wanna share a screenshot.
 
+<hr/>
+
 ### Share Message with website
 Send a message with website url to other app like facebook/twitter/email<br/>
 ![sharecontent](https://byrobingames.github.io/img/simpleshare/sharecontent.png)
@@ -51,8 +54,9 @@ Send a message with website url to other app like facebook/twitter/email<br/>
 - Message(as Text)
 - Website(as Text) start with http://
 
-### Share Message with website and with image
+<hr/>
 
+### Share Message with website and with image
 Send a message with website url  and with an image to other app like facebook/twitter/email<br/>
 ![sharewithimage](https://byrobingames.github.io/img/simpleshare/sharewithimage.png)
 
@@ -66,6 +70,9 @@ If you want to share an image, use the build-in Image API blocks like “current
 You als can share an personal image of your choose, just use the “Image from file” block<br/>
 ![imageApi](https://byrobingames.github.io/img/simpleshare/imageApi.png)
 
+<hr/>
+
+**Callback**
 If Share Message succeed or failed you can check if share succeed or failed.<br/>
 <span style="color:red;">On Android it will always return true even when share is failed.</span><br/>
 ![simplesharecallback](https://byrobingames.github.io/img/simpleshare/simplesharecallback.png)
