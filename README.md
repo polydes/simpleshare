@@ -25,14 +25,15 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 - Return true or false (android always return true)
 - 64-bit support to iOS
 - Tested with iPhone 5 IOS 8, Ipad IOS 8 and Samgsung Note 3 4.4.2
-
 ## How to Install
 
 To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
-Select the Engine Extension from the left menu and click on "Download"
+![toolsetextensionlocation](https://byrobingames.github.io/img/toolset/toolsetextensionlocation.png)<br/>
+Select the Extension from the menu and click on "Download"
 
-If you not have byRobin Extension Mananger installed, install this first.
+If you not have byRobin Extension Mananger installed, install this first.<br/>
 Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
+
 
 ## Screenshots
 ![iosscreenshot](https://byrobingames.github.io/img/simpleshare/simpleshareios.png)![androidscreenshot](https://byrobingames.github.io/img/simpleshare/simpleshareandroid.png)
@@ -96,6 +97,14 @@ Repository: [https://github.com/byrobingames/simpleshare](https://github.com/byr
 
 Need help with a pull request?<br/>
 [https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
+
+## ANY ISSUES?
+
+Add the issue on GitHub<br/>
+Repository: [https://github.com/byrobingames/applovin/issues](https://github.com/byrobingames/applovin/issues)
+
+Need help with creating a issue?<br/>
+[https://help.github.com/articles/creating-an-issue/](https://help.github.com/articles/creating-an-issue/)
 
 ## Donate
 
