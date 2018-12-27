@@ -18,7 +18,11 @@ import openfl.display.PNGEncoderOptions;
 import haxe.io.Bytes;
 
 #if android
+#if openfl_legacy
 import openfl.utils.JNI;
+#else
+import lime.system.JNI;
+#end
 #end
 
 class Share
@@ -112,7 +116,7 @@ class Share
             #if android
             if(sharesucceed == null)
             {
-                sharesucceed = openfl.utils.JNI.createStaticMethod("com.byrobin.simpleshare.Share", "shareResultSucceed", "()Z", true);
+                sharesucceed = JNI.createStaticMethod("com.byrobin.simpleshare.Share", "shareResultSucceed", "()Z", true);
             }
             var args = new Array<Dynamic>();
             return sharesucceed(args);
@@ -127,7 +131,7 @@ class Share
             #if android
             if(sharefailed == null)
             {
-                sharefailed = openfl.utils.JNI.createStaticMethod("com.byrobin.simpleshare.Share", "shareResultFailed", "()Z", true);
+                sharefailed = JNI.createStaticMethod("com.byrobin.simpleshare.Share", "shareResultFailed", "()Z", true);
             }
             var args = new Array<Dynamic>();
             return sharefailed(args);

@@ -1,7 +1,7 @@
 /**
  *
  * Stencyl Extension, Create by Robin Schaafsma
- * wwww.byrobingames.com
+ * https://byrobingames.github.io
  *
  **/
 
@@ -15,8 +15,10 @@ import android.content.res.AssetManager;
 import android.content.Context;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.os.Environment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.view.View;
 
 import java.io.File;
@@ -90,10 +92,15 @@ public class Share extends Extension
             public void run()
             {
                 Bitmap image = convertToImage(base64Img);
+                File filePath = null;
                 
                 try {
-                    FileOutputStream fos = Extension.mainContext.openFileOutput("screen.png", Context.MODE_WORLD_READABLE);
-                    
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+
+                    filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "screen.png");
+                    FileOutputStream fos = new FileOutputStream(filePath);
+
                     image.compress(Bitmap.CompressFormat.PNG, 100, fos);
                     fos.close();
                     
@@ -101,7 +108,7 @@ public class Share extends Extension
                     Log.e("saveToInternalStorage()", e.getMessage());
                 }
                 
-                File filePath = Extension.mainContext.getFileStreamPath("screen.png");
+                //File filePath = Extension.mainContext.getFileStreamPath("screen.png");
                 
                 Log.e("file path ", filePath.toString());
                 

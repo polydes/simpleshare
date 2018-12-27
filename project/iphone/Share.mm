@@ -149,9 +149,9 @@ namespace share
             //id VC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
             UIViewController *VC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
             
-            if(NSClassFromString(@"UIPopoverPresentationController"))// Show ActivityViewController in popover on IOS8 for iPad
+            if(NSClassFromString(@"UIPopoverPresentationController"))// Show ActivityViewController in popover on IOS8> for iPad
             {
-                NSLog(@"UiPopoverPresentationController for iPad IOS8");
+                NSLog(@"UiPopoverPresentationController for iPad IOS8>");
                 
                 CGFloat width  = acController.view.frame.size.width;
                 CGFloat height = acController.view.frame.size.height;
