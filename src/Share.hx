@@ -25,6 +25,9 @@ import lime.system.JNI;
 #end
 #end
 
+#if ios
+@:buildXml('<include name="${haxelib:simpleshare}/project/Build.xml"/>')
+#end
 class Share
 {	
 	private static var msg:String;
