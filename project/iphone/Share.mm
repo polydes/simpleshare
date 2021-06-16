@@ -12,6 +12,8 @@
 
 using namespace share;
 
+extern "C" int share_register_prims();
+
 @interface ViewController : UIViewController
 {
 
@@ -22,6 +24,11 @@ using namespace share;
 //----------//----------//----------//----------//----------//----------//
 
 @implementation ViewController
+
++ (void) load
+{
+  share_register_prims();
+}
 
 namespace share
 
