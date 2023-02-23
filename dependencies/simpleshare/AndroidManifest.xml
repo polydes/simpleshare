@@ -4,4 +4,16 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	
+	<application>
+		<provider
+			android:name="com.byrobin.simpleshare.SimpleShareFileProvider"
+			android:authorities="${applicationId}.simpleshare.fileprovider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/simpleshare_file_provider_paths" />
+		</provider>
+	</application>
+
 </manifest>

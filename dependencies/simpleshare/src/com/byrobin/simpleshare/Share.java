@@ -36,6 +36,11 @@ import android.util.Log;
 
 import org.haxe.extension.Extension;
 
+import androidx.core.content.FileProvider;
+import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 ///permisions
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -56,12 +61,12 @@ public class Share extends Extension
     private static boolean shareFailed = false;
 
     public static void shareContent(final String msg, final String url, final boolean withImage)
-	{
+    {
         
         mainActivity.runOnUiThread(new Runnable()
         {
-        	public void run()
-			{
+            public void run()
+            {
                 
                 if(!withImage)
                 {
@@ -69,8 +74,8 @@ public class Share extends Extension
                     Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_TEXT, msg + "\n\n" + url);
-                    Extension.mainContext.startActivity(Intent.createChooser(intent, "Share via.."));
-                    
+                    Extension.mainContext.startActivity(intent);
+
                     shareSucceed = true;
                     shareFailed = false;
                     
@@ -94,31 +99,39 @@ public class Share extends Extension
                 Bitmap image = convertToImage(base64Img);
                 File filePath = null;
                 
+                // Create unique filenames for each share (Good when sharing to a directory,
+                // if the file already exists and you don't have the option to rename the file)
+                SimpleDateFormat dateFormat = new SimpleDateFormat("_yyyy-MM-dd_HH.mm.ss");
+                String currentDateTime = dateFormat.format(new Date());
+
                 try {
                     StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                     StrictMode.setVmPolicy(builder.build());
 
-                    filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "screen.png");
+                    String filename = "Screen" + currentDateTime + ".png"; // Use .png or .jpg
+                    filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename);
                     FileOutputStream fos = new FileOutputStream(filePath);
 
-                    image.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    image.compress(Bitmap.CompressFormat.PNG, 100, fos); // Use PNG or JPEG
                     fos.close();
                     
                 } catch (Exception e) {
                     Log.e("saveToInternalStorage()", e.getMessage());
                 }
                 
-                //File filePath = Extension.mainContext.getFileStreamPath("screen.png");
+                Log.v("Simpleshare file path: ", "filePath is: "+filePath.toString());
                 
-                Log.e("file path ", filePath.toString());
+                // Fixing the : FileUriExposedViolation error:
+                // Using a FileProvider (Other apps can then read the image-file temporarly when we share it)
+                Context appContext = Extension.mainContext.getApplicationContext();
+                Uri fileUri = FileProvider.getUriForFile(appContext, appContext.getPackageName()+".simpleshare.fileprovider", filePath);
                 
-                Uri fileUri = Uri.fromFile(filePath);
-                
-                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_TEXT, msg + "\n\n" + url);
                 intent.putExtra(Intent.EXTRA_STREAM, fileUri);
-                Extension.mainContext.startActivity(Intent.createChooser(intent, "Share via.."));
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // If write permission needed use: | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                Extension.mainContext.startActivity(intent);
                 
                 shareSucceed = true;
                 shareFailed = false;
