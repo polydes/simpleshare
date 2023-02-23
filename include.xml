@@ -3,7 +3,7 @@
 	<source path="src" />
 
 	<section if="ios">
-		<setenv name="SIMPLESHARE_ENABLED" value="true" />
+		<template path="templates" />
 
 		<dependency name="UIKit.framework" />
 		<dependency name="QuartzCore.framework" />
