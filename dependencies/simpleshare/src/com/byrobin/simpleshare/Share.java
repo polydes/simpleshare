@@ -99,7 +99,8 @@ public class Share extends Extension
                 Bitmap image = convertToImage(base64Img);
                 File filePath = null;
                 
-                // Create unique filenames for each share (Good when sharing to a directory. -> If the file already exists -> and you don't have the option to rename the file)
+                // Create unique filenames for each share (Good when sharing to a directory,
+                // if the file already exists and you don't have the option to rename the file)
                 SimpleDateFormat dateFormat = new SimpleDateFormat("_yyyy-MM-dd_HH.mm.ss");
                 String currentDateTime = dateFormat.format(new Date());
 
@@ -107,7 +108,8 @@ public class Share extends Extension
                     StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                     StrictMode.setVmPolicy(builder.build());
 
-                    filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Screen" +currentDateTime +".png"); // Use .png or .jpg
+                    String filename = "Screen" + currentDateTime + ".png"; // Use .png or .jpg
+                    filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename);
                     FileOutputStream fos = new FileOutputStream(filePath);
 
                     image.compress(Bitmap.CompressFormat.PNG, 100, fos); // Use PNG or JPEG
@@ -116,61 +118,20 @@ public class Share extends Extension
                 } catch (Exception e) {
                     Log.e("saveToInternalStorage()", e.getMessage());
                 }
-                        
+                
                 Log.v("Simpleshare file path: ", "filePath is: "+filePath.toString());
                 
-                // Fixing the : FileUriExposedViolation error:                                                                  
-                // Using a FileProvider (Other apps can then read the image-file temporarly when we share it)           
-                Uri fileUri = FileProvider.getUriForFile( Objects.requireNonNull( Extension.mainContext.getApplicationContext() ), "com.game.name" +".provider", filePath);  // "com.game.name.provider" <- Justin! This ID, MUST be worldwide UNIQUE, and should ideally be generated automatically at build time, it should then be set to the BundleID of the curent Stencyl Game +".provider" -> The same ID should also dynamically be created in the Game Android Manifest at build time (I used the template in workspace)
+                // Fixing the : FileUriExposedViolation error:
+                // Using a FileProvider (Other apps can then read the image-file temporarly when we share it)
+                Context appContext = Extension.mainContext.getApplicationContext();
+                Uri fileUri = FileProvider.getUriForFile(appContext, appContext.getPackageName()+".simpleshare.fileprovider", filePath);
                 
-                        // To get FileProvider to work together with Stencyl:
-                        // I have modified the template manifest in [Stecyl] \plaf\lime-templates\android\template\app\src\main 
-                        // , to be able to set up the <provider>-tags (Sice they hade to be placed between the <application>-tags).
-                        //
-                        // Ideally -> this should be automated so that you replace this static string: "com.game.name.provider" with the
-                        // games BundleID +".provider", both in the Android Manifest for the game as well as in -> this Share.java code.
-
-                            /*
-                                <application> 
-                                .....
-
-                                    <!-- This is added to the template manifest: -->>
-
-                                    <provider
-                                        android:name="androidx.core.content.FileProvider" 
-                                        android:authorities="com.game.name.provider"   
-                                        android:exported="false"
-                                        android:grantUriPermissions="true">
-                                        <meta-data
-                                            android:name="android.support.FILE_PROVIDER_PATHS"
-                                            android:resource="@xml/file_paths">
-                                        </meta-data>
-                                    </provider>         
-
-
-
-                                .....                       
-                                </application>
-
-                            */ 
-                    
-                        //  AND -> I have ALSO in [Stecyl] \plaf\lime-templates\android\template\app\src\main -> under [res] -> created a new folder: [xml] AND added the file: file_paths.xml  
-                        
-                            /*
-                                    The file: file_paths.xml contains: 
-                                
-                                    <?xml version="1.0" encoding="utf-8"?> 
-                                    <paths xmlns:android="http://schemas.android.com/apk/res/android"> 
-                                                <external-path name="external_files" path="." /> 
-                                    </paths>
-                            */
-                    
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_TEXT, msg + "\n\n" + url);
                 intent.putExtra(Intent.EXTRA_STREAM, fileUri);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // If write permission needed use: | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                Extension.mainContext.startActivity(intent);     
+                Extension.mainContext.startActivity(intent);
                 
                 shareSucceed = true;
                 shareFailed = false;
