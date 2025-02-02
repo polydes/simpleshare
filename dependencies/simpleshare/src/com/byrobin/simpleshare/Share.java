@@ -105,9 +105,7 @@ public class Share extends Extension
                 String currentDateTime = dateFormat.format(new Date());
 
                 try {
-                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-                    StrictMode.setVmPolicy(builder.build());
-
+              
                     String filename = "Screen" + currentDateTime + ".png"; // Use .png or .jpg
                     filePath = new File(Extension.mainContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename);
                     FileOutputStream fos = new FileOutputStream(filePath);
@@ -118,9 +116,7 @@ public class Share extends Extension
                 } catch (Exception e) {
                     Log.e("saveToInternalStorage()", e.getMessage());
                 }
-                
-                Log.v("Simpleshare file path: ", "filePath is: "+filePath.toString());
-                
+                                
                 // Fixing the : FileUriExposedViolation error:
                 // Using a FileProvider (Other apps can then read the image-file temporarly when we share it)
                 Context appContext = Extension.mainContext.getApplicationContext();
@@ -130,9 +126,15 @@ public class Share extends Extension
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_TEXT, msg + "\n\n" + url);
                 intent.putExtra(Intent.EXTRA_STREAM, fileUri);
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // If write permission needed use: | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                Extension.mainContext.startActivity(intent);
-                
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    
+                try{ 
+                    Extension.mainContext.startActivity(Intent.createChooser(intent, "Share via")); 
+                } 
+                catch(Exception e){ 
+                    e.printStackTrace(); 
+                }
+
                 shareSucceed = true;
                 shareFailed = false;
             }
@@ -170,7 +172,13 @@ public class Share extends Extension
     }
     
     public static boolean hasPermissions(String... permissions) {
+
         if (android.os.Build.VERSION.SDK_INT >= 23 && permissions != null) {
+            
+            // If Android 14(API34): Skip to ask the user for permission -> (Android 14 do no longer expect those permissions)
+            if(android.os.Build.VERSION.SDK_INT >= 34) return true;
+            
+            // Ask the user for permission
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(mainActivity, permission) != PackageManager.PERMISSION_GRANTED) {
                     return false;
