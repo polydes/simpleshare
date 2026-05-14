@@ -1,0 +1,20 @@
+{
+  "group": "com.polydes.byrobin",
+  "id": "simpleshare",
+  "name": "Simple Share iOS/Android",
+  "description": "Simple share content (Email/Facebook/Twitter and more).",
+  "tags": ["social"],
+  "type": "game",
+  "author": "Robin Schaafsma",
+  "repository": "https://www.polydes.com/byrobingames",
+  "website": "https://www.polydes.com/byrobingames/engine/simpleshare",
+  "target": "stencyl-4.2.0",
+  "version": "1.11.0",
+
+  "icon": "icon.png",
+
+  "engine": {
+    "root": "engine",
+    "compatibility": "mobile"
+  }
+}

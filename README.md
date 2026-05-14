@@ -17,10 +17,6 @@ https://developers.facebook.com/docs/apps/review/prefill
 **WhatsApp ios Only**<br/>
 <span style="color:red;">You can only share a image without a message, if you share a message with a image only the message will share with WhatsApp and not the image.</span><br/>
 
-## Important!!
-
-This Extension Required the Toolset Extension Manager [https://byrobingames.github.io](https://byrobingames.github.io)
-
 ![simplesharetoolset](https://byrobingames.github.io/img/simpleshare/simplesharetoolset.png)
 
 ## Main Features
@@ -30,16 +26,6 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 - Return true or false (android always return true)
 - 64-bit support to iOS
 - Tested with iPhone 5 IOS 8, Ipad IOS 8 and Samgsung Note 3 4.4.2
-
-## How to Install
-
-To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
-![toolsetextensionlocation](https://byrobingames.github.io/img/toolset/toolsetextensionlocation.png)<br/>
-Select the Extension from the menu and click on "Download"
-
-If you not have byRobin Extension Mananger installed, install this first.<br/>
-Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
-
 
 ## Screenshots
 ![iosscreenshot](https://byrobingames.github.io/img/simpleshare/simpleshareios.png)![androidscreenshot](https://byrobingames.github.io/img/simpleshare/simpleshareandroid.png)
@@ -100,28 +86,6 @@ If Share Message succeed or failed you can check if share succeed or failed.<br/
 - 2017-05-18(1.9.4) Fix: Crash on some iOS devices
 - 2017-06-03(1.9.5) Fix: Crash on iOS when use with Unityads
 - 2018-12-27(1.9.6) Fix crash on Android api 24>, Fix use with Stencyl 3.5
-
-## Submitting a Pull Request
-
-This software is opensource.<br/>
-If you want to contribute you can make a pull request
-
-Repository: [https://github.com/byrobingames/simpleshare](https://github.com/byrobingames/simpleshare)
-
-Need help with a pull request?<br/>
-[https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
-
-## ANY ISSUES?
-
-Add the issue on GitHub<br/>
-Repository: [https://github.com/byrobingames/simpleshare/issues](https://github.com/byrobingames/simpleshare/issues)
-
-Need help with creating a issue?<br/>
-[https://help.github.com/articles/creating-an-issue/](https://help.github.com/articles/creating-an-issue/)
-
-## Donate
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HKLGFCAGKBMFL)<br />
 
 ## License
 

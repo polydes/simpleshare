@@ -26,7 +26,9 @@ import lime.system.JNI;
 #end
 
 #if ios
-@:buildXml('<include name="${haxelib:simpleshare}/project/Build.xml"/>')
+@:buildXml('<include name="${haxelib:simpleshare}/project/build.xml"/>')
+//This is just here to prevent the otherwise indirectly referenced native code from being stripped at link time.
+@:cppFileCode('extern "C" int share_register_prims();void com_byrobin_simpleshare_link(){share_register_prims();}')
 #end
 class Share
 {	
