@@ -68,25 +68,6 @@ If Share Message succeed or failed you can check if share succeed or failed.<br/
 <span style="color:red;">On Android it will always return true even when share is failed.</span><br/>
 ![simplesharecallback](https://byrobingames.github.io/img/simpleshare/simplesharecallback.png)
 
-## Version History
-
-- 2015-02-13 (1.0) : first release
-- 2015-02-25 (1.1) : update Share with screenshot on IOS
-- 2015-03-02 (1.2) : update Share with screenshot on Android
-- 2015-03-07 (1.3) : update Return true of false if share succeed of failed. (On Android always return true even if share failed).
-- 2015-03-12 (1.4) : FIX: share screenshot in landscape in IOS, IOS now also use the IMAGE API to take a screenshot.
-- 2015-03-22 (1.5) : FIX:  game crashed on iPad when share with screenshot, is fixed now.
-- 2015-05-16 (1.6) : Android: Save screenshot to phone storage
-- 2015-06-13 (1.7) Update info.txt file.
-- 2015-07-31 (1.8) Add icon on blocks
-- 2016-04-09(1.9.0) You can now share image by using the build-in IMAGE API blocks. Created an extra block.
-- 2016-09-29(1.9.1) Added extra permission for iOS 10, so app will not crash, extension requires byRobin Extension Manager
-- 2017-03-19(1.9.2) Added Android Gradle support for openfl4
-- 2017-05-16(1.9.3) Tested for Stencyl 3.5, Required byRobin Toolset Extension Manager
-- 2017-05-18(1.9.4) Fix: Crash on some iOS devices
-- 2017-06-03(1.9.5) Fix: Crash on iOS when use with Unityads
-- 2018-12-27(1.9.6) Fix crash on Android api 24>, Fix use with Stencyl 3.5
-
 ## License
 
 Author: Robin Schaafsma
