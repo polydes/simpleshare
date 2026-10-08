@@ -1,3 +1,7 @@
+# 1.11.1 (2026-10-08)
+
+- Fix typo causing failure to load extension
+
 # 1.11.0 (2026-05-27)
 
 - Fixes for Stencyl 4.2.0
